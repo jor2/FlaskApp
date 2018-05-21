@@ -7,14 +7,18 @@ from passlib.hash import sha256_crypt
 
 app = Flask(__name__)
 
-# Config MySQL
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'flaskapp'
-app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
-mysql = MySQL(app)
+def mysql_config():
+    # Config MySQL
+    app.config['MYSQL_HOST'] = 'localhost'
+    app.config['MYSQL_USER'] = 'root'
+    app.config['MYSQL_PASSWORD'] = ''
+    app.config['MYSQL_DB'] = 'flaskapp'
+    app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+    return MySQL(app)
+
+
+mysql = mysql_config()
 
 articles_var = articles()
 
